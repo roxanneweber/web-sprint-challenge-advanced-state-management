@@ -13,6 +13,13 @@ const AddForm = ({ addSmurf }) => {
 	//remove when error state is added
 	const errorMessage = '';
 
+	// const handleChange = (e) => {
+	// 	setState({
+	// 		...state,
+	// 		[e.target.name]: e.target.value,
+	// 	});
+	// };
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (name === '' || position === '' || nickname === '') {

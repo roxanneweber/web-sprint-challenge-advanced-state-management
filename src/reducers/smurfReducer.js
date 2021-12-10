@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				smurfs: action.payload,
-				loading: false,
+				loading: true,
 			};
 		case ADD_SMURF:
 			return {

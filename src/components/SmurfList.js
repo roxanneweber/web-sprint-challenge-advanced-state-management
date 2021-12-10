@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { fetchSmurfs } from '../actions/smurfActions';
 import Smurf from './Smurf';
 
 const SmurfList = ({ smurf: { smurfs, loading }, fetchSmurfs }) => {
@@ -10,7 +8,16 @@ const SmurfList = ({ smurf: { smurfs, loading }, fetchSmurfs }) => {
 		// eslint-disable-next-line
 	}, []);
 
-	if (loading || smurfs === null) {
+	// const fetchSmurfs = async () => {
+	// 	setLoading(true);
+	// 	const res = await fetch('http://localhost:3333/smurfs');
+	// 	const data = await res.json();
+
+	// 	setSmurfs(data);
+	// 	setLoading(false);
+	// };
+
+	if (loading) {
 		return <h4>Loading...</h4>;
 	}
 
@@ -30,11 +37,11 @@ SmurfList.propTypes = {
 	fetchSmurfs: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-	smurf: state.smurf,
-});
+// const mapStateToProps = (state) => ({
+// 	smurf: state.smurf,
+// });
 
-export default connect(mapStateToProps, { fetchSmurfs })(SmurfList);
+export default SmurfList;
 
 //Task List:
 //1. Connect the smurfs and loading state values to the SmurfList component.
