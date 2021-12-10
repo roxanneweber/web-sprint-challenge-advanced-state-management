@@ -1,5 +1,4 @@
 import { FETCH_SMURFS, SET_LOADING, SMURFS_ERROR, ADD_SMURF } from './types';
-import axios from 'axios';
 
 // get smurf data
 export const fetchSmurfs = (props) => async (dispatch) => {

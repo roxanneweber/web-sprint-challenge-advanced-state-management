@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
+// import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-=======
->>>>>>> parent of e67414c (smurfs data pulled in from redux and working)
+// import { fetchSmurfs } from '../actions/smurfActions';
 import Smurf from './Smurf';
 
 const SmurfList = () => {
@@ -14,27 +13,15 @@ const SmurfList = () => {
 		// eslint-disable-next-line
 	}, []);
 
-<<<<<<< HEAD
-	// const fetchSmurfs = async () => {
-	// 	setLoading(true);
-	// 	const res = await fetch('http://localhost:3333/smurfs');
-	// 	const data = await res.json();
-
-	// 	setSmurfs(data);
-	// 	setLoading(false);
-	// };
-=======
 	const fetchSmurfs = async () => {
 		setLoading(true);
 		const res = await fetch('http://localhost:3333/smurfs');
 		const data = await res.json();
-
 		setSmurfs(data);
 		setLoading(false);
 	};
->>>>>>> parent of e67414c (smurfs data pulled in from redux and working)
 
-	if (loading) {
+	if (loading || smurfs === null) {
 		return <h4>Loading...</h4>;
 	}
 
@@ -49,9 +36,8 @@ const SmurfList = () => {
 	);
 };
 
-<<<<<<< HEAD
 SmurfList.propTypes = {
-	smurf: PropTypes.object.isRequired,
+	// smurf: PropTypes.object.isRequired,
 	fetchSmurfs: PropTypes.func.isRequired,
 };
 
@@ -59,8 +45,6 @@ SmurfList.propTypes = {
 // 	smurf: state.smurf,
 // });
 
-=======
->>>>>>> parent of e67414c (smurfs data pulled in from redux and working)
 export default SmurfList;
 
 //Task List:

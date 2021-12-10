@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				smurfs: [...state.smurfs, action.payload],
-				loading: false,
+				loading: true,
 			};
 
 		case SET_LOADING:
