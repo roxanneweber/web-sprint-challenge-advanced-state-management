@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				smurfs: action.payload,
-				loading: true,
+				loading: false,
 			};
 		case SET_LOADING:
 			return {
