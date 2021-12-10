@@ -199,8 +199,9 @@ answering questions on the following topics. Add your answers below.
 
 3. What does `redux-thunk` allow us to do? How does it change our
    `action-creators`? Redux thunk is middleware that are functional programming
-   techniques used to delay processes within an app. Thunk allows us to compute
-   something NOW, but use evalutate it, or 'perform work' LATER.
+   techniques used to delay processes within an app. Here we use Thunk to create
+   async functions inside of our actions so we can wait for a response to come
+   back from the json DB and send results to the reducer
 
 4. What is your favorite state management system you've learned and this sprint?
    Please explain why!
