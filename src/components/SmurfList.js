@@ -13,14 +13,12 @@ const SmurfList = () => {
 
 	const fetchSmurfs = async () => {
 		setLoading(true);
-		const res = await fetch('http://localhost:3333/smurfs');
+		const res = await fetch('/smurfs');
 		const data = await res.json();
 
 		setSmurfs(data);
 		setLoading(false);
 	};
-
-	console.log(fetchSmurfs);
 
 	if (loading) {
 		return <h4>Loading...</h4>;
@@ -31,7 +29,7 @@ const SmurfList = () => {
 			{!loading && smurfs.length === 0 ? (
 				<p>No smurfs to show...</p>
 			) : (
-				smurfs.map((smurf) => <li>{smurf.name}</li>)
+				smurfs.map(smurf => <li>{smurf.name}</li>))
 			)}
 
 			{/* <Smurf smurf={fetchSmurfs} /> */}
