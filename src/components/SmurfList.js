@@ -30,8 +30,6 @@ const SmurfList = () => {
 			) : (
 				smurfs.map((smurf) => <Smurf smurf={smurf} key={smurf.id} />)
 			)}
-
-			{/* <Smurf smurf={fetchSmurfs} /> */}
 		</div>
 	);
 };
