@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
-const AddSmurfModal = () => {
+const AddSmurfModal = ({ addSmurf }) => {
 	const [name, setName] = useState('');
 	const [position, setPosition] = useState('');
 	const [nickname, setNickname] = useState('');
 	const [description, setDescription] = useState('');
 
+	// added later
 	const errorMessage = {};
 
-	const handleSubmit = (e) => {
+	const onSubmit = (e) => {
 		e.preventDefault();
 		if (name === '' || position === '' || nickname === '') {
 			M.toast({ html: 'Please add data to all fields' });
@@ -40,47 +42,67 @@ const AddSmurfModal = () => {
 		>
 			<div className='modal-content'>
 				<h2>Add Smurf</h2>
-				<form onSubmit={handleSubmit}>
-					<div className='form-group'>
-						<label htmlFor='name'>Name:</label>
-						<br />
+				<div className='row'>
+					<div className='input-field'>
 						<input
-							onChange={(e) => setName(e.target.value)}
+							type='text'
 							value={name}
 							name='name'
 							id='name'
+							onChange={(e) => setName(e.target.value)}
 						/>
+						<label htmlFor='name' className='active'>
+							Name:
+						</label>
 					</div>
-					<div className='form-group'>
-						<label htmlFor='position'>Position:</label>
-						<br />
+				</div>
+
+				<div className='row'>
+					<div className='input-field'>
 						<input
-							onChange={(e) => setPosition(e.target.value)}
+							type='text'
 							value={position}
 							name='position'
 							id='position'
+							onChange={(e) => setName(e.target.value)}
 						/>
+						<label htmlFor='name' className='active'>
+							Position:
+						</label>
 					</div>
-					<div className='form-group'>
-						<label htmlFor='nickname'>Nickname:</label>
-						<br />
+				</div>
+
+				<div className='row'>
+					<div className='input-field'>
 						<input
-							onChange={(e) => setNickname(e.target.value)}
+							type='text'
 							value={nickname}
 							name='nickname'
 							id='nickname'
+							onChange={(e) => setName(e.target.value)}
 						/>
+						<label htmlFor='name' className='active'>
+							Nickname:
+						</label>
 					</div>
-					<div className='form-group'>
-						<label htmlFor='description'>Description:</label>
-						<br />
-						<textarea
-							onChange={(e) => setDescription(e.target.value)}
+				</div>
+
+				<div className='row'>
+					<div className='input-field'>
+						<input
+							type='text'
 							value={description}
 							name='description'
 							id='description'
+							onChange={(e) => setName(e.target.value)}
 						/>
+						<label htmlFor='name' className='active'>
+							Name:
+						</label>
 					</div>
+				</div>
+
+				<div className='modal-footer'>
 					{errorMessage && (
 						<div
 							data-testid='errorAlert'
@@ -90,11 +112,21 @@ const AddSmurfModal = () => {
 							Error: {errorMessage}
 						</div>
 					)}
-					<button>Submit Smurf</button>
-				</form>
+					<a
+						href='#!'
+						onClick={onSubmit}
+						className='modal-close waves-effect blue waves-light btn'
+					>
+						Submit
+					</a>
+				</div>
 			</div>
 		</div>
 	);
+};
+
+AddSmurfModal.propTypes = {
+	addSmurf: PropTypes.func.isRequired,
 };
 
 export default AddSmurfModal;

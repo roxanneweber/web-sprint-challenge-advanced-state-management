@@ -20,12 +20,12 @@ export const fetchSmurfs = (props) => async (dispatch) => {
 };
 
 // add a smurf
-export const addSmurf = (props) => async (dispatch) => {
+export const addSmurf = (smurf) => async (dispatch) => {
 	try {
 		setLoading();
 		const res = await fetch('http://localhost:3333/smurfs', {
 			method: 'POST',
-			body: JSON.stringify(props),
+			body: JSON.stringify(smurf),
 			headers: {
 				'Content-Type': 'application/json',
 			},

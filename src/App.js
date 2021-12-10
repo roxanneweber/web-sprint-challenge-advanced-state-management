@@ -1,8 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import AddBtn from './components/layout/AddBtn';
+// import AddBtn from './components/layout/AddBtn';
 import store from './store';
 import AddForm from './components/AddForm';
+// import AddSmurfModal from './components/smurfs/AddSmurfModal';
 import SmurfList from './components/SmurfList';
 import Header from './components/Header';
 import 'materialize-css/dist/css/materialize.min.css';
@@ -17,8 +18,9 @@ const App = () => {
 				<Header />
 
 				<main>
-					<AddBtn />
+					{/* <AddBtn /> */}
 					<SmurfList />
+					{/* <AddSmurfModal /> */}
 					<AddForm />
 				</main>
 			</div>

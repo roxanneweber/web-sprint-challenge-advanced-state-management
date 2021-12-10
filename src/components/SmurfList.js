@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import { fetchSmurfs } from '../actions/smurfActions';
 import Smurf from './Smurf';
-import Preloader from './PreLoader';
+import Preloader from './layout/PreLoader';
 
 const SmurfList = () => {
 	const [smurfs, setSmurfs] = useState([]);
