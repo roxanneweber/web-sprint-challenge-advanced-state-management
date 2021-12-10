@@ -191,10 +191,8 @@ answering questions on the following topics. Add your answers below.
    apps. Because the 'state' of our application is stored in one location
    (store) it is considered the 'single source of truth' for where our state is
    at. We can verify and compare state (before and after) using the redux dev
-   tools.
-
-   Changes to our state are made with reducers, and then 'dispatched' to our
-   components for use. Actions are what are sent to Reduce to create a new
+   tools. Changes to our state are made with reducers, and then 'dispatched' to
+   our components for use. Actions are what are sent to Reduce to create a new
    state.
 
 3. What does `redux-thunk` allow us to do? How does it change our

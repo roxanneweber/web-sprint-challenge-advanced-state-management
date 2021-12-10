@@ -1,12 +1,12 @@
+import { combineReducers } from 'redux';
+import smurfReducer from './smurfReducer';
 
-export const initialState = {
-}
-
-const reducer = ()=>{
-}
+export default combineReducers({
+	smurf: smurfReducer,
+});
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
-export default reducer;
+// export default reducer;
 
 //Task List:
 //1. Adds the following state values into the initialState:
