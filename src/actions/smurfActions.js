@@ -1,7 +1,7 @@
 import { FETCH_SMURFS, SET_LOADING, SMURFS_ERROR, ADD_SMURF } from './types';
 
 // get smurf data
-export const fetchSmurfs = (props) => async (dispatch) => {
+export const fetchSmurfs = (smurf) => async (dispatch) => {
 	try {
 		setLoading();
 		const res = await fetch('http://localhost:3333/smurfs');

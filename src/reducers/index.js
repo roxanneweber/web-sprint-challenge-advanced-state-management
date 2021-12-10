@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import smurfReducer from './smurfReducer';
 
 export default combineReducers({
-	log: smurfReducer,
+	smurf: smurfReducer,
 });
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
