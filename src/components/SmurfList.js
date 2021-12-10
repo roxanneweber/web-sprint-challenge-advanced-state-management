@@ -5,7 +5,7 @@ import { fetchSmurfs } from '../actions';
 import Smurf from './Smurf';
 
 const SmurfList = (props) => {
-	const { isLoading, smurfs } = props;
+	const { smurfs, isLoading } = props;
 
 	if (isLoading) {
 		return <h1>Loading...</h1>;
@@ -15,11 +15,7 @@ const SmurfList = (props) => {
 		<section className='display'>
 			<div>
 				{smurfs.map((smurf) => {
-					return (
-						<div key={smurf.id}>
-							<Smurf smurf={smurf} />
-						</div>
-					);
+					return <Smurf smurf={smurf} key={smurf.id} />;
 				})}
 			</div>
 		</section>

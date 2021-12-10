@@ -1,8 +1,8 @@
 import {
-	START_API_CALL,
-	END_API_CALL_SUCCESS,
+	FETCH_SMURFS,
+	FETCH_SMURFS_SUCCESS,
 	ADD_SMURF,
-	SET_ERROR_TEXT,
+	ERROR_MSG,
 } from './../actions';
 
 export const initialState = {
@@ -13,12 +13,12 @@ export const initialState = {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case START_API_CALL:
+		case FETCH_SMURFS:
 			return {
 				...state,
 				isLoading: true,
 			};
-		case END_API_CALL_SUCCESS:
+		case FETCH_SMURFS_SUCCESS:
 			return {
 				...state,
 				isLoading: false,
@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
 				...state,
 				smurfs: [...state.smurfs, action.payload],
 			};
-		case SET_ERROR_TEXT:
+		case ERROR_MSG:
 			return {
 				...state,
 				isLoading: false,

@@ -9,18 +9,18 @@ import axios from 'axios';
   3. Add a standard action that allows us to set the value of the error message slice of state.
 */
 
-export const START_API_CALL = 'START_API_CALL';
-export const END_API_CALL_SUCCESS = 'END_API_CALL_SUCCESS';
-export const END_API_CALL_ERROR = 'END_API_CALL_ERROR';
+export const FETCH_SMURFS = 'FETCH_SMURFS';
+export const FETCH_SMURFS_SUCCESS = 'FETCH_SMURFS_SUCCESS';
+export const FETCH_SMURFS_ERROR = 'FETCH_SMURFS_ERROR';
+export const ERROR_MSG = 'ERROR_MSG';
 export const ADD_SMURF = 'ADD_SMURF';
-export const SET_ERROR_TEXT = 'SET_ERROR_TEXT';
 
 export const fetchSmurfs = () => (dispatch) => {
-	dispatch({ type: START_API_CALL });
+	dispatch({ type: FETCH_SMURFS });
 	axios
 		.get('http://localhost:3333/smurfs')
 		.then((res) => {
-			dispatch({ type: END_API_CALL_SUCCESS, payload: res.data });
+			dispatch({ type: FETCH_SMURFS_SUCCESS, payload: res.data });
 			dispatch(setErrorText(''));
 		})
 		.catch((err) => {
@@ -32,7 +32,7 @@ export const addSmurf = (smurf) => (dispatch) => {
 	console.log(smurf);
 	if (!smurf.name || !smurf.nickname || !smurf.position) {
 		dispatch({
-			type: SET_ERROR_TEXT,
+			type: ERROR_MSG,
 			payload: 'Name, Position and Nickname are required fields',
 		});
 	}
@@ -49,5 +49,5 @@ export const addSmurf = (smurf) => (dispatch) => {
 };
 
 export const setErrorText = (err) => {
-	return { type: SET_ERROR_TEXT, payload: err };
+	return { type: ERROR_MSG, payload: err };
 };
