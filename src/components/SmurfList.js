@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Smurf from './Smurf';
-import PropTypes from 'prop-types';
 
 const SmurfList = () => {
 	const [smurfs, setSmurfs] = useState([]);
@@ -13,7 +12,7 @@ const SmurfList = () => {
 
 	const fetchSmurfs = async () => {
 		setLoading(true);
-		const res = await fetch('/smurfs');
+		const res = await fetch('http://localhost:3333/smurfs');
 		const data = await res.json();
 
 		setSmurfs(data);
@@ -29,7 +28,7 @@ const SmurfList = () => {
 			{!loading && smurfs.length === 0 ? (
 				<p>No smurfs to show...</p>
 			) : (
-				smurfs.map(smurf => <li>{smurf.name}</li>))
+				smurfs.map((smurf) => <li>{smurf.name}</li>)
 			)}
 
 			{/* <Smurf smurf={fetchSmurfs} /> */}
@@ -38,10 +37,6 @@ const SmurfList = () => {
 };
 
 export default SmurfList;
-
-SmurfList.propTypes = {
-	smurf: PropTypes.object.isRequired,
-};
 
 //Task List:
 //1. Connect the smurfs and loading state values to the SmurfList component.

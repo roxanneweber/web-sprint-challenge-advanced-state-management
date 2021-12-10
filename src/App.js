@@ -1,28 +1,24 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import store from './store';
+import React, { Component } from "react";
 
 import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
 import Header from './components/Header';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import "./App.css";
 
-const App = () => {
-	return (
-		<Provider store={store}>
-			<div className='App'>
-				<Header />
+const App = ()=> {
+  return (
+    <div className="App">
+      <Header />
 
-				<main>
-					<SmurfList />
-					<AddForm />
-				</main>
-			</div>
-		</Provider>
-	);
-};
+      <main>
+        <SmurfList/>
+        <AddForm/>
+      </main>
+    </div>
+  );
+}
 
 export default App;
 
