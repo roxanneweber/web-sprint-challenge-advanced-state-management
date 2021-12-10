@@ -1,7 +1,8 @@
-import { FETCH_SMURFS, SET_LOADING, SMURFS_ERROR } from './types';
+import { FETCH_SMURFS, SET_LOADING, SMURFS_ERROR, ADD_SMURF } from './types';
+import axios from 'axios';
 
 // get smurf data
-export const fetchSmurfs = () => async (dispatch) => {
+export const fetchSmurfs = (props) => async (dispatch) => {
 	try {
 		setLoading();
 		const res = await fetch('http://localhost:3333/smurfs');
@@ -9,6 +10,31 @@ export const fetchSmurfs = () => async (dispatch) => {
 
 		dispatch({
 			type: FETCH_SMURFS,
+			payload: data,
+		});
+	} catch (err) {
+		dispatch({
+			type: SMURFS_ERROR,
+			payload: err.response.data,
+		});
+	}
+};
+
+// add a smurf
+export const addSmurf = (props) => async (dispatch) => {
+	try {
+		setLoading();
+		const res = await fetch('http://localhost:3333/smurfs', {
+			method: 'POST',
+			body: JSON.stringify(props),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		const data = await res.json();
+
+		dispatch({
+			type: ADD_SMURF,
 			payload: data,
 		});
 	} catch (err) {

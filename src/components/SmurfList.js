@@ -27,6 +27,7 @@ const SmurfList = ({ smurf: { smurfs, loading }, fetchSmurfs }) => {
 
 SmurfList.propTypes = {
 	smurf: PropTypes.object.isRequired,
+	fetchSmurfs: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

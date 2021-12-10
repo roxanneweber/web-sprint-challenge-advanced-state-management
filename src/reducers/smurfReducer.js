@@ -1,4 +1,9 @@
-import { FETCH_SMURFS, SET_LOADING, SMURFS_ERROR } from '../actions/types';
+import {
+	FETCH_SMURFS,
+	SET_LOADING,
+	SMURFS_ERROR,
+	ADD_SMURF,
+} from '../actions/types';
 
 export const initialState = {
 	smurfs: null,
@@ -15,6 +20,13 @@ export default (state = initialState, action) => {
 				smurfs: action.payload,
 				loading: false,
 			};
+		case ADD_SMURF:
+			return {
+				...state,
+				smurfs: [...state.smurfs, action.payload],
+				loading: false,
+			};
+
 		case SET_LOADING:
 			return {
 				...state,

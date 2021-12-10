@@ -2,11 +2,11 @@ import { combineReducers } from 'redux';
 import smurfReducer from './smurfReducer';
 
 export default combineReducers({
-	smurf: smurfReducer,
+	log: smurfReducer,
 });
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
-// export default reducer;
+// export default combineReducer;
 
 //Task List:
 //1. Adds the following state values into the initialState:
