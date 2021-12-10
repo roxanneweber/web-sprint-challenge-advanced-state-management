@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import { fetchSmurfs } from '../actions/smurfActions';
 import Smurf from './Smurf';
+import Preloader from './PreLoader';
 
 const SmurfList = () => {
 	const [smurfs, setSmurfs] = useState([]);
@@ -22,7 +23,7 @@ const SmurfList = () => {
 	};
 
 	if (loading || smurfs === null) {
-		return <h4>Loading...</h4>;
+		return <Preloader />;
 	}
 
 	return (
