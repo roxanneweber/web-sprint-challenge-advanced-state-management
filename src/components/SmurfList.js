@@ -28,7 +28,7 @@ const SmurfList = () => {
 			{!loading && smurfs.length === 0 ? (
 				<p>No smurfs to show...</p>
 			) : (
-				smurfs.map((smurf) => <li>{smurf.name}</li>)
+				smurfs.map((smurf) => <Smurf smurf={smurf} key={smurf.id} />)
 			)}
 
 			{/* <Smurf smurf={fetchSmurfs} /> */}
