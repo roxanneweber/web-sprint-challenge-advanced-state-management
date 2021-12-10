@@ -1,52 +1,39 @@
-import React, { useState, useEffect } from 'react';
-// import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-// import { fetchSmurfs } from '../actions/smurfActions';
+import React from 'react';
+import { connect } from 'react-redux';
+
+import { fetchSmurfs } from '../actions';
 import Smurf from './Smurf';
-import Preloader from './layout/PreLoader';
 
-const SmurfList = () => {
-	const [smurfs, setSmurfs] = useState([]);
-	const [loading, setLoading] = useState(false);
+const SmurfList = (props) => {
+	const { isLoading, smurfs } = props;
 
-	useEffect(() => {
-		fetchSmurfs();
-		// eslint-disable-next-line
-	}, []);
-
-	const fetchSmurfs = async () => {
-		setLoading(true);
-		const res = await fetch('http://localhost:3333/smurfs');
-		const data = await res.json();
-		setSmurfs(data);
-		setLoading(false);
-	};
-
-	if (loading || smurfs === null) {
-		return <Preloader />;
+	if (isLoading) {
+		return <h1>Loading...</h1>;
 	}
 
 	return (
-		<div className='listContainer'>
-			{!loading && smurfs.length === 0 ? (
-				<p>No smurfs to show...</p>
-			) : (
-				smurfs.map((smurf) => <Smurf smurf={smurf} key={smurf.id} />)
-			)}
-		</div>
+		<section className='display'>
+			<div>
+				{smurfs.map((smurf) => {
+					return (
+						<div key={smurf.id}>
+							<Smurf smurf={smurf} />
+						</div>
+					);
+				})}
+			</div>
+		</section>
 	);
 };
 
-SmurfList.propTypes = {
-	// smurf: PropTypes.object.isRequired,
-	fetchSmurfs: PropTypes.func.isRequired,
+const mapStateToProps = (state) => {
+	return {
+		smurfs: state.smurfs,
+		isLoading: state.isLoading,
+	};
 };
 
-// const mapStateToProps = (state) => ({
-// 	smurf: state.smurf,
-// });
-
-export default SmurfList;
+export default connect(mapStateToProps)(SmurfList);
 
 //Task List:
 //1. Connect the smurfs and loading state values to the SmurfList component.

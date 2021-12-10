@@ -1,46 +1,32 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { addSmurf } from '../actions/smurfActions';
-import M from 'materialize-css/dist/js/materialize.min.js';
 
-const AddForm = ({ addSmurf }) => {
-	const [name, setName] = useState('');
-	const [position, setPosition] = useState('');
-	const [nickname, setNickname] = useState('');
-	const [description, setDescription] = useState('');
+import { addSmurf } from './../actions';
 
-	//remove when error state is added
-	const errorMessage = '';
+const AddForm = (props) => {
+	const [state, setState] = useState({
+		name: '',
+		position: '',
+		nickname: '',
+		description: '',
+	});
 
-	// const handleChange = (e) => {
-	// 	setState({
-	// 		...state,
-	// 		[e.target.name]: e.target.value,
-	// 	});
-	// };
+	const handleChange = (e) => {
+		setState({
+			...state,
+			[e.target.name]: e.target.value,
+		});
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (name === '' || position === '' || nickname === '') {
-			M.toast({ html: 'Please add data to all fields' });
-		} else {
-			const newSmurf = {
-				name,
-				position,
-				nickname,
-				description,
-			};
-
-			addSmurf(newSmurf);
-
-			M.toast({ html: `${nickname} added successfully.` });
-			// clear fields
-			setName('');
-			setPosition('');
-			setNickname('');
-			setDescription('');
-		}
+		props.addSmurf(state);
+		setState({
+			name: '',
+			position: '',
+			nickname: '',
+			description: '',
+		});
 	};
 
 	return (
@@ -51,8 +37,8 @@ const AddForm = ({ addSmurf }) => {
 					<label htmlFor='name'>Name:</label>
 					<br />
 					<input
-						onChange={(e) => setName(e.target.value)}
-						value={name}
+						onChange={handleChange}
+						value={state.name}
 						name='name'
 						id='name'
 					/>
@@ -61,8 +47,8 @@ const AddForm = ({ addSmurf }) => {
 					<label htmlFor='position'>Position:</label>
 					<br />
 					<input
-						onChange={(e) => setPosition(e.target.value)}
-						value={position}
+						onChange={handleChange}
+						value={state.position}
 						name='position'
 						id='position'
 					/>
@@ -71,8 +57,8 @@ const AddForm = ({ addSmurf }) => {
 					<label htmlFor='nickname'>Nickname:</label>
 					<br />
 					<input
-						onChange={(e) => setNickname(e.target.value)}
-						value={nickname}
+						onChange={handleChange}
+						value={state.nickname}
 						name='nickname'
 						id='nickname'
 					/>
@@ -81,19 +67,19 @@ const AddForm = ({ addSmurf }) => {
 					<label htmlFor='description'>Description:</label>
 					<br />
 					<textarea
-						onChange={(e) => setDescription(e.target.value)}
-						value={description}
+						onChange={handleChange}
+						value={state.description}
 						name='description'
 						id='description'
 					/>
 				</div>
-				{errorMessage && (
+				{props.errorText && (
 					<div
 						data-testid='errorAlert'
 						className='alert alert-danger'
 						role='alert'
 					>
-						Error: {errorMessage}
+						Error: {props.errorText}
 					</div>
 				)}
 				<button>Submit Smurf</button>
@@ -101,11 +87,13 @@ const AddForm = ({ addSmurf }) => {
 		</section>
 	);
 };
-
-AddForm.propTypes = {
-	addSmurf: PropTypes.func.isRequired,
+const mapStateToProps = (state) => {
+	return {
+		errorText: state.errorText,
+	};
 };
-export default connect(null, { addSmurf })(AddForm);
+
+export default connect(mapStateToProps, { addSmurf })(AddForm);
 
 //Task List:
 //1. Connect the errorMessage, setError and addSmurf actions to the AddForm component.
