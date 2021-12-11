@@ -1,22 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import Preloader from './PreLoader';
 import { fetchSmurfs } from '../actions';
 import Smurf from './Smurf';
 
 const SmurfList = (props) => {
 	const { smurfs, isLoading } = props;
 
-	if (isLoading) {
-		return <h1>Loading...</h1>;
+	if (isLoading || smurfs === null) {
+		return <Preloader />;
 	}
 
 	return (
 		<section className='display'>
 			<div>
-				{smurfs.map((smurf) => {
-					return <Smurf smurf={smurf} key={smurf.id} />;
-				})}
+				{!isLoading && smurfs.length === 0 ? (
+					<p>No smurfs to show...</p>
+				) : (
+					smurfs.map((smurf) => <Smurf smurf={smurf} key={smurf.id} />)
+				)}
 			</div>
 		</section>
 	);

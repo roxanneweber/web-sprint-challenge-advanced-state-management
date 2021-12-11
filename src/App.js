@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
 import Header from './components/Header';
-
+import 'materialize-css/dist/css/materialize.min.css';
 import { fetchSmurfs } from './actions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
