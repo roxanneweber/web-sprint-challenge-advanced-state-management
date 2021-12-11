@@ -12,7 +12,7 @@ import axios from 'axios';
 export const FETCH_SMURFS = 'FETCH_SMURFS';
 export const FETCH_SMURFS_SUCCESS = 'FETCH_SMURFS_SUCCESS';
 export const FETCH_SMURFS_ERROR = 'FETCH_SMURFS_ERROR';
-export const ERROR_MSG = 'ERROR_MSG';
+export const SET_ERROR_MSG = 'SET_ERROR_MSG';
 export const ADD_SMURF = 'ADD_SMURF';
 
 export const fetchSmurfs = () => (dispatch) => {
@@ -21,10 +21,10 @@ export const fetchSmurfs = () => (dispatch) => {
 		.get('http://localhost:3333/smurfs')
 		.then((res) => {
 			dispatch({ type: FETCH_SMURFS_SUCCESS, payload: res.data });
-			dispatch(setErrorText(''));
+			dispatch(setErrorMsg(''));
 		})
 		.catch((err) => {
-			dispatch(setErrorText(err.response.data.Error));
+			dispatch(setErrorMsg(err.response.data.Error));
 		});
 };
 
@@ -32,7 +32,7 @@ export const addSmurf = (smurf) => (dispatch) => {
 	console.log(smurf);
 	if (!smurf.name || !smurf.nickname || !smurf.position) {
 		dispatch({
-			type: ERROR_MSG,
+			type: SET_ERROR_MSG,
 			payload: 'Name, Position and Nickname are required fields',
 		});
 	}
@@ -41,13 +41,13 @@ export const addSmurf = (smurf) => (dispatch) => {
 		.post('http://localhost:3333/smurfs', smurf)
 		.then((res) => {
 			dispatch({ type: ADD_SMURF, payload: { ...smurf, id: Date.now() } });
-			dispatch(setErrorText(''));
+			dispatch(setErrorMsg(''));
 		})
 		.catch((err) => {
-			dispatch(setErrorText(err.response.data.Error));
+			dispatch(setErrorMsg(err.response.data.Error));
 		});
 };
 
-export const setErrorText = (err) => {
-	return { type: ERROR_MSG, payload: err };
+export const setErrorMsg = (err) => {
+	return { type: SET_ERROR_MSG, payload: err };
 };

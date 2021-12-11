@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Preloader from './PreLoader';
-import { fetchSmurfs } from '../actions';
 import Smurf from './Smurf';
 
 const SmurfList = (props) => {

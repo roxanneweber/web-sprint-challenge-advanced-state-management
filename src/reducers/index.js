@@ -2,7 +2,7 @@ import {
 	FETCH_SMURFS,
 	FETCH_SMURFS_SUCCESS,
 	ADD_SMURF,
-	ERROR_MSG,
+	SET_ERROR_MSG,
 } from './../actions';
 
 export const initialState = {
@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
 				...state,
 				smurfs: [...state.smurfs, action.payload],
 			};
-		case ERROR_MSG:
+		case SET_ERROR_MSG:
 			return {
 				...state,
 				isLoading: false,
